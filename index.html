@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="GASINJEK - Ojek lokal rangkasbitung">
+  <meta property="og:description" content="Layanan transportasi khusus wilayah rangkasbitung lebak banten dengan tarif termurah.">
+  <meta property="og:image" content="https://example.com/gambar-konten.jpg">
+  <meta property="og:url" content="https://example.com/halaman-anda">
+  <meta property="og:type" content="website">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  
+  <title>GASINJEK - Ojek lokal rangkasbitung</title>
+  
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #fff;
+      background-image: url('logo.JPG');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+    }
+
+    .splash-logo, .slide-container {
+      display: none;
+    }
+
+    .splash-logo.active, .slide-container.active {
+      display: flex;
+    }
+
+    .splash-logo {
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: ;
+    }
+
+    .splash-logo img {
+      max-width: 80%;
+      max-height: 50vh;
+    }
+
+    .splash-logo button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .slide-container {
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .slides {
+      flex: 1;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100px;
+      height: 100px;
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .slide h2 {
+      margin-bottom: 10px;
+    }
+
+    .button-box {
+      margin-top: 20px;
+    }
+
+    .slide button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .swipe-hint {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      color: #888;
+      animation: blink 1.5s infinite;
+      z-index: 10;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @media (max-width: 600px) {
+      .slide h2 {
+        font-size: 18px;
+      }
+      .slide p {
+        font-size: 14px;
+      }
+      .slide button {
+        font-size: 14px;
+      }
+      .swipe-hint {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Splash Logo -->
+<div class="splash-logo active" id="logoScreen">
+  <alt="Logo App" />
+  <button onclick="showSlides()">Lanjut</button>
+</div>
+
+<!-- Slide Iklan -->
+<div class="slide-container" id="slideScreen">
+  <div class="slides" id="slider">
+    <div class="slide" style="background: #f5f5f5;">
+      <img src="tarif.gif"/>
+      <h2>TARIF FRIENDLY</h2>
+      <p>Tarif gasinjek dijamin murah dan bersahabat lur !!! <br> Hanya Rp 6000 di 3,5 km pertama<br>Dan Rp 2000 /km selanjutnya</p>
+      <div class="button-box">
+        <button onclick="nextSlide()">Lanjut</button>
+      </div>
+
+    </div>
+    <div class="slide" style="background: #e0f7fa;">
+      <i class="fa fa-users fa-4x"></i><i class="fa fa-shield fa-4x"></i>
+      <br>
+      <h2>AMAN & AMANAH</h2>
+      <p>Driver mengutamakan kemananan user<br>100% Amanah dalam tugas insya allah</p>
+      <div class="swipe-hint">⇆</div>
+    </div>
+    <div class="slide" style="background: #f1f8e9;">
+      <i class="fa fa-motorcycle fa-4x"></i>
+      <h2>SIAP GAS !!!</h2>
+      <p>Pesan GASINJEK sekarang<br>Delivery , food and market Siaaap Gassss !!!!</p>
+      <div class="button-box">
+        <button onclick="goToApp()">GASIN YUK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const logoScreen = document.getElementById('logoScreen');
+  const slideScreen = document.getElementById('slideScreen');
+  const slider = document.getElementById('slider');
+
+  function showSlides() {
+    logoScreen.classList.remove('active');
+    slideScreen.classList.add('active');
+  }
+
+  function nextSlide() {
+    slider.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+  }
+
+  function goToApp() {
+    window.location.href = "https://ojeklokal.github.io/gasinjek.io/"; // ganti dengan URL tujuan
+  }
+</script>
+
+</body>
+</html>
